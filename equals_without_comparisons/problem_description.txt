@@ -1,0 +1,4 @@
+Implement a function that takes two integers and returns true if and only if the two integers are equal.
+
+You cannot use comparison operators like ==, =, >, <, .equals().
+

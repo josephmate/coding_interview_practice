@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
 		printf("Need to provide at least two integers\n");
 	}
 	int a = strtol(argv[1], NULL, 0);
-	int b = strtol(argv[1], NULL, 0);
+	int b = strtol(argv[2], NULL, 0);
 	
 	if(compare(a,b)) {
 		printf("true\n");

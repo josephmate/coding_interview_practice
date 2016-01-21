@@ -1,0 +1,4 @@
+
+1. Design the class for a linked list.
+2. Implement the linked list.
+3. Modify the linked list so that it can contain any data type, but each instance contains data of the same type.

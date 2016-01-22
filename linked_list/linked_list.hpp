@@ -1,13 +1,16 @@
+
+template <class T>
 struct link_node {
-	link_node * next;
-	int data;
-	link_node(link_node*, int);
+	link_node<T> * next;
+	T data;
+	link_node(link_node<T>*, T);
 };
 
+template <class T>
 class linked_list {
 
 	int currentSize;
-	link_node * tail;
+	link_node<T> * tail;
 
 	public:
 		linked_list();
@@ -16,22 +19,22 @@ class linked_list {
 		/**
 		 * Adds value v to the end of the list
 		 */
-		void add(int v);
+		void add(T v);
 
 		/**
 		 * Return the value at index idx
 		 */
-		int get(int idx);
+		T get(int idx);
 
 		/**
 		 * Removes and returns the most recently added value
 		 */
-		int pop();
+		T pop();
 		
 		/**
 		 * Remove and returns the value at index idx.
 		 */
-		int remove(int idx);
+		T remove(int idx);
 	
 		/**
 		 * Returns the number of data items stored in this linked_list

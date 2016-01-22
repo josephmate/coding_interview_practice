@@ -6,31 +6,35 @@
 
 
 
-link_node::link_node(link_node* n, int d){
+template <class T>
+link_node<T>::link_node(link_node* n, T d){
 	next = n;
 	data = d;
 }
 
-linked_list::linked_list() {
+template <class T>
+linked_list<T>::linked_list() {
 	currentSize=0;
 	tail = NULL;
 }
 
-linked_list::~linked_list() {
+template <class T>
+linked_list<T>::~linked_list() {
 	while(tail != NULL) {
 		pop();
 	}
 }
 
 
-
-void linked_list::add(int v){
+template <class T>
+void linked_list<T>::add(T v){
 	currentSize++;
-	link_node * new_node = new link_node(tail, v);
+	link_node<T> * new_node = new link_node<T>(tail, v);
 	tail = new_node;
 }
 
-int linked_list::get(int idx) {
+template <class T>
+T linked_list<T>::get(int idx) {
 	if(idx < 0) {
 		throw  std::runtime_error("the idx must be >= 0");
 	}
@@ -40,7 +44,7 @@ int linked_list::get(int idx) {
 	if(howManyToGoBack < 0) {
 		throw  std::runtime_error("the idx must be < currentSize");
 	}
-	link_node * curr = tail;
+	link_node<T> * curr = tail;
 	for(int i = 1; i <= howManyToGoBack; i++) {
 		curr = curr->next;
 	}
@@ -48,19 +52,21 @@ int linked_list::get(int idx) {
 	return curr->data;
 }
 
-int linked_list::pop() {
+template <class T>
+T linked_list<T>::pop() {
 	if(currentSize <= 0) {
 		throw std::runtime_error("cannot pop from an empty list");
 	}
-	int data = tail->data;
-	link_node * to_delete = tail;
+	T data = tail->data;
+	link_node<T> * to_delete = tail;
 	tail = tail->next;
 	currentSize--;
 	delete to_delete;
 	return data;
 }
 
-int linked_list::remove(int idx) {
+template <class T>
+T linked_list<T>::remove(int idx) {
 	if(currentSize <= 0) {
 		throw std::runtime_error("cannot remove from an empty list");
 	}
@@ -74,8 +80,8 @@ int linked_list::remove(int idx) {
 	if(howManyToGoBack < 0) {
 		throw  std::runtime_error("the idx must be < currentSize");
 	}
-	link_node * curr = tail;
-	link_node * prev = NULL;
+	link_node<T> * curr = tail;
+	link_node<T> * prev = NULL;
 	for(int i = 1; i <= howManyToGoBack; i++) {
 		// we need to keep track of the previous pointer because we link the
 		// previous and the next of current in order to remove the current:
@@ -92,13 +98,23 @@ int linked_list::remove(int idx) {
 	} else {
 		tail = curr->next;
 	}
-	int data = curr->data;
+	T data = curr->data;
 	delete curr;
 	currentSize--;
 	return data;
 }
 
-int linked_list::size() {
+template <class T>
+int linked_list<T>::size() {
 	// we keep track of changes to the size as the methods are accessed
 	return currentSize;
 }
+
+
+// according to this stackoverflow article:
+// http://stackoverflow.com/questions/8752837/undefined-reference-to-template-class-constructor
+// I need to instantaiate all templates I want to allow here.
+// If I want to provide ANY template, then this code must be merged into the
+// header file.
+template class linked_list<int>;
+template class linked_list<char>;

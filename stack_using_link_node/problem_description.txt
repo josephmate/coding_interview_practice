@@ -1,0 +1,10 @@
+
+
+Implement a stack using only link_nodes. This is to practice getting the
+template files correct. Previously, I had separated the header and the
+implementation, and this made templating difficult  because all the types to be
+used with the template needed to be defined ahead of time in the implementation
+file. Otherwise, the compiler would not be able to link the object file of the
+implementation to the usages.
+
+I am also using this as an opportunity to improve my Makefiles.

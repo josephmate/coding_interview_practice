@@ -2,3 +2,25 @@
 1. Design the class for a linked list.
 2. Implement the linked list.
 3. Modify the linked list so that it can contain any data type, but each instance contains data of the same type.
+
+Some additional tasks from interview book:
+4. bool remove( link_node * node )
+4.1 Delete the provided node from the linked_list
+4.2 for this method to make sense, there needs to be methods:
+4.2.1 link_node* get_link_node(int idx)
+4.2.2 link_node* push
+
+
+5. insertBefore(link_node * l, T data)
+5.1  place data on a new link_node before the index of l
+5.1.1 calling with NULL should place it as the most recent element ( IE: stack push() )
+
+push 1,2,3
+
+        ln     ln     ln
+NULL <-- * <--  * <--  *
+         1      2      3
+
+                           ^
+                           |
+That is where insertBefore(NULL, 4) should go

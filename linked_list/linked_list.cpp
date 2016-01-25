@@ -27,10 +27,25 @@ linked_list<T>::~linked_list() {
 
 
 template <class T>
-void linked_list<T>::add(T v){
+link_node<T>*  linked_list<T>::add(T v){
 	currentSize++;
 	link_node<T> * new_node = new link_node<T>(tail, v);
 	tail = new_node;
+	return new_node;
+}
+
+
+template <class T>
+link_node<T>* linked_list<T>::insertBefore(link_node<T>* n, T d){
+	if(n == NULL) {
+		return add(d);
+	}
+	
+	link_node<T>* new_node = new link_node<T>(n->next, d);
+	n->next = new_node;
+	currentSize++;
+
+	return new_node;
 }
 
 template <class T>
@@ -102,6 +117,39 @@ T linked_list<T>::remove(int idx) {
 	delete curr;
 	currentSize--;
 	return data;
+}
+
+template <class T>
+T linked_list<T>::remove(link_node<T>* to_remove) {
+	// we need to find the link that appears before to_remove so we can update
+	// before_to_remove->next to be to_remove_next
+	
+	link_node<T>* prev = NULL;
+	link_node<T>* curr = tail;
+	while(curr != NULL) {
+		if(curr == to_remove) {
+			T ret = curr->data;
+
+			if(prev != NULL) {
+				// removing non-tail is easier to handle
+				prev->next = curr->next;
+			} else {
+				// prev == NULL means we are removing the tail of the linked_list
+				tail = curr->next;
+			}
+			delete curr;
+			
+			currentSize--;
+			return ret;
+		}
+
+		prev = curr;
+		curr = curr->next;
+	}
+
+	// not found
+	throw  std::runtime_error("the provided link_node was not found in this linked_list");
+	// cannot return NULL as that might be a legitimate return value
 }
 
 template <class T>

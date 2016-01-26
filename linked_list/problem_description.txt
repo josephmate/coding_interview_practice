@@ -24,3 +24,10 @@ NULL <-- * <--  * <--  *
                            ^
                            |
 That is where insertBefore(NULL, 4) should go
+
+
+6. insertAfter(link_node * l, T data) in terms of index
+7. get_without_using_size(int index)
+7.1 although we already have an index method, this particular implementation is
+    to challenge you solve it without using a size member to keep track of the
+    size of the list and to iterate over the list only once.

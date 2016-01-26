@@ -263,3 +263,159 @@ BOOST_AUTO_TEST_CASE(testRemoveNode) {
 }
 
 
+BOOST_AUTO_TEST_CASE(testRemoveNodeNull) {
+	linked_list<int> list;
+	link_node<int>* idx0 = list.add(0);
+	link_node<int>* idx1 = list.add(1);
+	link_node<int>* idx2 = list.add(2);
+	BOOST_CHECK_THROW(
+		list.remove((link_node<int>*)NULL), 
+		std::runtime_error
+	);
+}
+
+// insertAfter Null empty
+// insertAfter Null size==1
+// insertAfter Null size==2
+// insertAfter Null size==3
+//
+// insertAfter idx0 size==1
+// insertAfter idx0 (head) size==2
+// insertAfter idx1 (tail) size==2
+// insertAfter idx0 (head) size==3
+// insertAfter idx2 (tail) size==3
+// insertAfter idx1 (middle) size==3
+BOOST_AUTO_TEST_CASE(insertAfter) {
+	linked_list<int> list;
+
+	// insertAfter Null empty
+	list.insertAfter(NULL, 99);
+	BOOST_CHECK(list.size() == 1);
+	BOOST_CHECK(list.get(0) == 99);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.size() == 0);
+	
+	// insertAfter Null size==1
+	list.add(1);
+	list.insertAfter(NULL, 99);
+	BOOST_CHECK(list.size() == 2);
+	BOOST_CHECK(list.get(0) == 99);
+	BOOST_CHECK(list.get(1) == 1);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter Null size==2
+	list.add(1);
+	list.add(2);
+	list.insertAfter(NULL, 99);
+	BOOST_CHECK(list.size() == 3);
+	BOOST_CHECK(list.get(0) == 99);
+	BOOST_CHECK(list.get(1) == 1);
+	BOOST_CHECK(list.get(2) == 2);
+	BOOST_CHECK(list.pop() == 2);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter Null size==3
+	list.add(1);
+	list.add(2);
+	list.add(3);
+	list.insertAfter(NULL, 99);
+	BOOST_CHECK(list.size() == 4);
+	BOOST_CHECK(list.get(0) == 99);
+	BOOST_CHECK(list.get(1) == 1);
+	BOOST_CHECK(list.get(2) == 2);
+	BOOST_CHECK(list.get(3) == 3);
+	BOOST_CHECK(list.pop() == 3);
+	BOOST_CHECK(list.pop() == 2);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter idx0 size==1
+	link_node<int>* idx0 = list.add(0);
+	list.insertAfter(idx0, 99);
+	BOOST_CHECK(list.size() == 2);
+	BOOST_CHECK(list.get(0) == 0);
+	BOOST_CHECK(list.get(1) == 99);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.pop() == 0);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter idx0 (head) size==2
+	idx0 = list.add(0);
+	link_node<int>* idx1 = list.add(1);
+	list.insertAfter(idx0, 99);
+	BOOST_CHECK(list.size() == 3);
+	BOOST_CHECK(list.get(0) == 0);
+	BOOST_CHECK(list.get(1) == 99);
+	BOOST_CHECK(list.get(2) == 1);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.pop() == 0);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter idx1 (tail) size==2
+	idx0 = list.add(0);
+	idx1 = list.add(1);
+	list.insertAfter(idx1, 99);
+	BOOST_CHECK(list.size() == 3);
+	BOOST_CHECK(list.get(0) == 0);
+	BOOST_CHECK(list.get(1) == 1);
+	BOOST_CHECK(list.get(2) == 99);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 0);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter idx0 (head) size==3
+	idx0 = list.add(0);
+	idx1 = list.add(1);
+	link_node<int>* idx2 = list.add(2);
+	list.insertAfter(idx0, 99);
+	BOOST_CHECK(list.size() == 4);
+	BOOST_CHECK(list.get(0) == 0);
+	BOOST_CHECK(list.get(1) == 99);
+	BOOST_CHECK(list.get(2) == 1);
+	BOOST_CHECK(list.get(3) == 2);
+	BOOST_CHECK(list.pop() == 2);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.pop() == 0);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter idx2 (tail) size==3
+	idx0 = list.add(0);
+	idx1 = list.add(1);
+	idx2 = list.add(2);
+	list.insertAfter(idx2, 99);
+	BOOST_CHECK(list.size() == 4);
+	BOOST_CHECK(list.get(0) == 0);
+	BOOST_CHECK(list.get(1) == 1);
+	BOOST_CHECK(list.get(2) == 2);
+	BOOST_CHECK(list.get(3) == 99);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.pop() == 2);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 0);
+	BOOST_CHECK(list.size() == 0);
+
+	// insertAfter idx1 (middle) size==3
+	idx0 = list.add(0);
+	idx1 = list.add(1);
+	idx2 = list.add(2);
+	list.insertAfter(idx1, 99);
+	BOOST_CHECK(list.size() == 4);
+	BOOST_CHECK(list.get(0) == 0);
+	BOOST_CHECK(list.get(1) == 1);
+	BOOST_CHECK(list.get(2) == 99);
+	BOOST_CHECK(list.get(3) == 2);
+	BOOST_CHECK(list.pop() == 2);
+	BOOST_CHECK(list.pop() == 99);
+	BOOST_CHECK(list.pop() == 1);
+	BOOST_CHECK(list.pop() == 0);
+	BOOST_CHECK(list.size() == 0);
+}
+

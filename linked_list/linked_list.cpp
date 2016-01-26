@@ -49,6 +49,56 @@ link_node<T>* linked_list<T>::insertBefore(link_node<T>* n, T d){
 }
 
 template <class T>
+link_node<T>* linked_list<T>::insertAfter(link_node<T> * to_insert, T data) {
+	// find the node to_insert
+	// while keeping track of prev
+	// update prev->next to  new
+	// update new->next to curr
+	// 
+	// NULL <-- 0 <-- 1 <-- 2 <-- tail
+	// insert idx1 99
+	//       new->next  _- 99 <_  prev->next
+	//                 v        \
+	// NULL <-- 0 <-- 1          2 <-- tail
+	// 							curr        prev
+	
+	link_node<T>* prev = NULL;
+	link_node<T>* curr = tail;
+	while(curr != NULL) {
+		if(curr == to_insert) {
+			link_node<T>* new_node = new link_node<T>(curr, data);
+			if(prev != NULL) {
+				// we are inserting somewhere in the middle
+				prev->next = new_node;
+			} else {
+				// we are inserting at the tail
+				tail = new_node;
+			}
+			
+			currentSize++;
+			return new_node;
+		}
+		prev = curr;
+		curr = curr->next;
+	}
+
+	// insert before index 0 because to_insert==NULL
+	if(to_insert != NULL) {
+		throw std::runtime_error("the link_node provided was not found");
+	}
+	
+	link_node<T>* new_node = new link_node<T>(curr, data);
+	if(prev != NULL) {
+		prev->next = new_node;
+	} else {
+		// we are inserting at the tail
+		tail = new_node;
+	}
+	currentSize++;
+	return new_node;
+}
+
+template <class T>
 T linked_list<T>::get(int idx) {
 	if(idx < 0) {
 		throw  std::runtime_error("the idx must be >= 0");
@@ -65,6 +115,11 @@ T linked_list<T>::get(int idx) {
 	}
 
 	return curr->data;
+}
+
+template <class T>
+T linked_list<T>::get_without_using_size(int index){
+	//TODO
 }
 
 template <class T>

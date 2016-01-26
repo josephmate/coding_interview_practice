@@ -49,6 +49,8 @@ class linked_list {
 		/**
 		 * Return the value at index idx
 		 * - implementation not allowed to use the currentSize member
+		 * - it's purely implemented as a challenge. Since we already maintain the
+		 *   size of the list, this method is not necessary.
 		 */
 		T get_without_using_size(int index);
 

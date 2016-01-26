@@ -119,7 +119,33 @@ T linked_list<T>::get(int idx) {
 
 template <class T>
 T linked_list<T>::get_without_using_size(int index){
-	//TODO
+	// keep a pointer that is index units behind
+	//
+	// once we hit null, return the data in the behind pointer
+	//
+	// if the pointer is not m units behind, the list is too small to have that
+	// index
+	//
+	// behind count
+	//           1     2     3     4
+	//   V       V     V     V     V
+	//  NULL <-- 0 <-- 1 <-- 2 <-- 3 <-- tail
+	//
+	int behindCount=0;
+	link_node<T>* behind = tail;
+	link_node<T>* curr = tail;
+	while(curr != NULL) {
+		if(behindCount < index+1) {
+			behindCount++;
+		} else {
+			behind = behind->next;
+		}
+		curr = curr->next;
+	}
+	if(behindCount < index+1) {
+		throw std::runtime_error("index must be < size of list");
+	}
+	return behind->data;
 }
 
 template <class T>

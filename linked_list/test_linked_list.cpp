@@ -419,3 +419,59 @@ BOOST_AUTO_TEST_CASE(insertAfter) {
 	BOOST_CHECK(list.size() == 0);
 }
 
+// test empty throws exception
+// test size 1 idx 0 okay
+// test size 1 idx 1 throws exception 
+// test size 2 idx 0 okay
+// test size 2 idx 1 okay
+// test size 2 idx 2 throws exception 
+// test size 3 idx 0 okay
+// test size 3 idx 1 okay
+// test size 3 idx 2 okay
+// test size 3 idx 4 throws exception 
+BOOST_AUTO_TEST_CASE(test_get_without_using_size) {
+	linked_list<int> list;
+
+	// test empty throws exception
+	BOOST_CHECK_THROW(
+		list.get_without_using_size(0), 
+		std::runtime_error
+	);
+	
+	// test size 1 idx 0 okay
+	list.add(0);
+	BOOST_CHECK(list.get_without_using_size(0) == 0);
+
+	// test size 1 idx 1 throws exception 
+	BOOST_CHECK_THROW(
+		list.get_without_using_size(1), 
+		std::runtime_error
+	);
+
+	// test size 2 idx 0 okay
+	// test size 2 idx 1 okay
+	list.add(1);
+	BOOST_CHECK(list.get_without_using_size(0) == 0);
+	BOOST_CHECK(list.get_without_using_size(1) == 1);
+
+	// test size 2 idx 2 throws exception 
+	BOOST_CHECK_THROW(
+		list.get_without_using_size(2), 
+		std::runtime_error
+	);
+
+	// test size 3 idx 0 okay
+	// test size 3 idx 1 okay
+	// test size 3 idx 2 okay
+	list.add(2);
+	BOOST_CHECK(list.get_without_using_size(0) == 0);
+	BOOST_CHECK(list.get_without_using_size(1) == 1);
+	BOOST_CHECK(list.get_without_using_size(2) == 2);
+
+	// test size 3 idx 4 throws exception 
+	BOOST_CHECK_THROW(
+		list.get_without_using_size(3), 
+		std::runtime_error
+	);
+}
+

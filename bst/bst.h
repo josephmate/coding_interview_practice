@@ -1,5 +1,18 @@
+#ifndef BST_H
+#define BST_H
 
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
+typedef struct bst bst;
+
+/**
+ * Don't want to have a separate leaf or empty flag. As a result, a leaf is if
+ * both children are empty. A node is empty is both children are NULL.
+ */
 struct bst {
 	bst * left;
 	bst * right;
@@ -10,7 +23,7 @@ struct bst {
 /**
  * creates a single node of the bst
  */
-bst* make_bst_node(bst * left, bst* right, int data);
+bst* make_root_bst();
 
 
 /**
@@ -30,5 +43,12 @@ void add(bst * root, int key, int value);
  *
  * Otherwise, returns false and int*value is left untouched.
  */
-bool find(bst * root, int key, int * value);
+int find(bst * root, int key, int * value);
 
+
+#endif // BST_H
+
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus

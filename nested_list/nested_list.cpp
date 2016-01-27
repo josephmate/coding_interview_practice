@@ -110,7 +110,32 @@ void nested_list::flatten(){
 }
 		
 void nested_list::unflatten(){
-	//TODO
+	// The strategy is to recurse on the children, until we are at the deepest
+	// child
+	// Then we move remove the deepest tailmost child from the flattened list
+	// and continue until we reach the head of deepest tailmost child
+	//
+	// By proceeding in this manor, we can guarentee that the end of list so far
+	// ie curr->next == NULL, is also the last member of the deepest tailmost child
+	//
+	// After removing it, the tail is the last member of the next deepest tailmost
+	// child.
+	// 
+	//
+	// In summary the order is:
+	// - always recurse before doing anything
+	// - recurse from tailmost to headmost
+	nested_node* curr = tail;
+	while (curr != NULL) {
+		// found a node that doesn't have a child
+		// remove from curr->child to tail 
+		if(curr->child != NULL) {
+			tail = curr->child->prev;
+			curr->child->prev->next = NULL;
+			curr->child->prev = NULL;
+		}
+		curr = curr->prev;
+	}
 }
 
 

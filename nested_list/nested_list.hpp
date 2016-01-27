@@ -20,6 +20,8 @@ class nested_list {
 	nested_node * head; // the least recently added
 	nested_node * tail; // the most recently added
 
+	void unflatten_recurse(nested_node * curr);
+
 	public:
 		nested_list();
 		~nested_list();

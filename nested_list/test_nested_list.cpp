@@ -35,6 +35,32 @@ void print_tree(nested_node * node, int depth, int rootIdx) {
 	}
 }
 
+void check_list(int size, int expected[], nested_node* node) {
+	std::unordered_map<int,int> visited;
+	nested_node* curr = node;
+	while(curr != NULL) {
+		printf("adding %d\n", curr->data);
+		std::unordered_map<int,int>::const_iterator keyval = visited.find(curr->data);
+		if(keyval == visited.end()) {
+			visited[curr->data] = 1;
+		} else {
+			visited[curr->data] += 1;
+		}
+		curr = curr->next;
+	}
+
+	for(int i = 0; i< size; i++) {
+		std::unordered_map<int,int>::const_iterator keyval = visited.find(expected[i]);
+		printf("checking if %d is in the list\n", expected[i]);
+		BOOST_CHECK(keyval != visited.end());
+		if(keyval != visited.end()) {
+			BOOST_CHECK(keyval->second == 1);
+		}
+	}
+
+	BOOST_CHECK(visited.size() == size);
+}
+
 /**
  *  top
  *  0 -> 1 -> 2 -> 3
@@ -111,28 +137,37 @@ BOOST_AUTO_TEST_CASE(simpleTestCases){
 	top->flatten();
 	printf("done flattening\n");
 	
-	int expected[] = {0,1,2,3,10,11,12,40,41,42,50,60,61,20,21,30};
-	std::unordered_map<int,int> visited;
-	nested_node* curr = idx0;
-	while(curr != NULL) {
-		printf("adding %d\n", curr->data);
-		std::unordered_map<int,int>::const_iterator keyval = visited.find(curr->data);
-		if(keyval == visited.end()) {
-			visited[curr->data] = 1;
-		} else {
-			visited[curr->data] += 1;
-		}
-		curr = curr->next;
-	}
+	int expected[] = { 0, 1, 2, 3,10,
+	                  11,12,40,41,42,
+										50,60,61,20,21,
+										30};
+	check_list(16, expected, idx0) ;
 
-	for(int i = 0; i< 16; i++) {
-		std::unordered_map<int,int>::const_iterator keyval = visited.find(expected[i]);
-		printf("checking if %d is in the list\n", expected[i]);
-		BOOST_CHECK(keyval != visited.end());
-		if(keyval != visited.end()) {
-			BOOST_CHECK(keyval->second == 1);
-		}
-	}
-
+	printf("unflattening\n");
+	top->unflatten();
+	printf("done unflattening\n");
+	
+	printf("checking top\n");
+	int expectedTop[] ={0,1,2,3};
+	check_list(4, expectedTop, idx0) ;
+		printf("checking d1_a\n");
+		int expected_d1_a[] = {10,11,12};
+		check_list(3, expected_d1_a, idx0depth1a) ;
+			printf("checking d2_a_1\n");
+			int expected_d2_a_1[] = {40,41,42};
+			check_list(3, expected_d2_a_1, idx0depth2a1) ;
+			printf("checking d2_a_2\n");
+			int expected_d2_a_2[] = {50};
+			check_list(1, expected_d2_a_2, idx0depth2a2) ;
+			printf("checking d2_a_3\n");
+			int expected_d2_a_3[] = {60,61};
+			check_list(2, expected_d2_a_3, idx0depth2a3) ;
+		printf("checking d2_b\n");
+		int expected_d1_b[] = {20,21};
+		check_list(2, expected_d1_b, idx0depth1b) ;
+		printf("checking d2_c\n");
+		int expected_d1_c[] = {30};
+		check_list(1, expected_d1_c, idx0depth1c) ;
 }
+
 

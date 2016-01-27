@@ -1,0 +1,21 @@
+
+
+Implement a nested list using the following structure:
+
+	struct nested_node {
+		nested_node * prev;
+		nested_node * next;
+		nested_node * child;
+		int data;
+		nested_node(link_node* prev, link_node* next, int);
+	};
+
+You must be able to flatten and unflatten this list. This problem comes from the
+book "Programming Interviews Exposed: Secrets to Landing Your Next Job."
+
+flatten:
+- does not modify the children points, only the prev, next, head tail
+  pointers can be modified
+
+unflatten:
+- undoes what flatten() did

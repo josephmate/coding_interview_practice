@@ -25,6 +25,7 @@ struct bst {
  */
 bst* make_root_bst();
 
+int is_empty(bst * node);
 
 /**
  * given the root of the tree, safely deletes all nodes in it

@@ -12,3 +12,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 3. linked_list: implement a linked list in C++ to review classes, header files, unit tests
 4. stack_using_link_node: implement a stack using only a link_node
 5. nested_list: doubley linked list structure which also has a child
+6. linked_list_cycle: efficiently determine if a linked list has a cycle

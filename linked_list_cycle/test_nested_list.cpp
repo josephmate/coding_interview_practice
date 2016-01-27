@@ -1,6 +1,6 @@
 
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE NESTED_LIST
+#define BOOST_TEST_MODULE LINKED_LIST_CYCLE
 #include <boost/test/unit_test.hpp>
 #include <stdio.h>
 #include <unordered_map> 

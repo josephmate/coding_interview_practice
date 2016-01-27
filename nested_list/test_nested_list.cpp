@@ -168,6 +168,9 @@ BOOST_AUTO_TEST_CASE(simpleTestCases){
 		printf("checking d2_c\n");
 		int expected_d1_c[] = {30};
 		check_list(1, expected_d1_c, idx0depth1c) ;
+
+	top->flatten();
+	check_list(16, expected, idx0) ;
 }
 
 

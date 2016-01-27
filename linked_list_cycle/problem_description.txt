@@ -1,0 +1,11 @@
+
+
+Given the following structure:
+
+	struct linked_node {
+		nested_node * next;
+		int data;
+		linked_node(link_node* prev, int data);
+	};
+
+Determine if a pointer to the head of the linked list contains a cycle.

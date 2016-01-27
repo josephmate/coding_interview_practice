@@ -1,0 +1,9 @@
+
+
+Implement a binary search tree using this structure:
+
+struct bst {
+	bst * left;
+	bst * right;
+	int data;
+};

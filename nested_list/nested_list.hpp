@@ -1,14 +1,18 @@
 
-struct nested_node;
-class nested_list;
 
 struct nested_node {
 	nested_node * prev;
 	nested_node * next;
-	nested_list * child;
+	// we cannot make this a nested_list beacuse
+	// as we flatten a list, the head and tail of the nested list
+	// may not alonger apply and we must maintain a pointer to
+	// the children so that we can unflatten it
+	nested_node * child;
 	int data;
 	nested_node(nested_node* prev, nested_node* next, int);
 };
+
+
 
 class nested_list {
 
@@ -19,6 +23,8 @@ class nested_list {
 	public:
 		nested_list();
 		~nested_list();
+		
+		static nested_node* extract(nested_list*);
 
 		/**
 		 * Adds value v to the end of the list

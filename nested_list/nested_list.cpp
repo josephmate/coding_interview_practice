@@ -1,5 +1,6 @@
 
 #include <cstddef>          // NULL definition
+#include <stdio.h>          // printf
 #include "nested_list.hpp"
 #include <stdexcept>
 
@@ -27,8 +28,11 @@ nested_list::~nested_list() {
 nested_node* nested_list::add(int v){
 	currentSize++;
 	nested_node * new_node = new nested_node(tail, NULL, v);
+	if(tail != NULL) {
+		tail->next = new_node;
+	}
 	tail = new_node;
-	if(currentSize==1) {
+	if(head == NULL) {
 		head = new_node;
 	}
 	return new_node;
@@ -73,9 +77,36 @@ int nested_list::size() {
 	return currentSize;
 }
 
+nested_node*  nested_list::extract(nested_list* list) {
+	nested_node* ret =  list->head;
+	list->head = NULL;
+	list->tail = NULL;
+	list->currentSize = 0;
+	delete list;
+	return ret;
+}
+
+nested_node* find_tail(nested_node* list) {
+	nested_node* curr = list;
+	while(curr->next != NULL) {
+		curr = curr->next;
+	}
+	return curr;
+}
 
 void nested_list::flatten(){
-	//TODO
+	nested_node* curr = head;
+
+	while(curr != NULL) {
+		if(curr->child != NULL) {
+			//attach the child to our tail
+			tail->next = curr->child;
+			curr->child->prev = tail;
+			// figure out where the new tail will be
+			tail=find_tail(curr->child);
+		}
+		curr = curr->next;
+	}
 }
 		
 void nested_list::unflatten(){

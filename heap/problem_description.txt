@@ -1,9 +1,30 @@
 
 
-Implement a heap data structure with the following format:
+Implement a heap data structure with the following format. A heap has two
+properties:
+1) is always complete (the lowest depth is filled as much as possible)
+2) the child of a node are always smaller than the parent
 
 heap {
 	heap * left;
 	heap * right;
 	int data;
 };
+
+After thinking about how to implement a heap, using pointers make maintaining
+the first properly difficult. If everything was placed in an vector, maintaining
+the first property is as simple as appending to the vector. The tricky bits are:
+1) computing the index of the parent based on the index of the child
+2) computing the index of the child based on the index of the parent
+Given a function for those two, after appending the new element, we can fix the
+array so it also satifies the second property by swapping the inserted element with
+its parents.
+
+
+[ 1 , 1:1 , 1:2, 1:1:1 , 1:1:2 , 1:2:1 , 1:2:2 , ... ]
+  \   /     /     /      /       /         /
+   \_/_____/     /      /       /         /
+     \     \    /      /       /         /
+      \_____\__/______/       /         /
+             \               /         /
+              \_____________/_________/

@@ -46,6 +46,19 @@ void add(bst * root, int key, int value);
  */
 int find(bst * root, int key, int * value);
 
+/**
+ * Prints the BST using a pre-order traversal. Print the current node, then the
+ * left, then the right.
+ */
+void print_preorder(bst * root);
+
+void print_preorder_no_recursion(bst * root);
+
+/**
+ * Prints the BST using an in-order traversal. Print the left, then the
+ * current node, then the right.
+ */
+void print_inorder(bst * root);
 
 #endif // BST_H
 

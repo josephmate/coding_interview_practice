@@ -11,7 +11,13 @@ int main(int nargs, char** args) {
 		add(root, strtol(args[i], NULL, 10), i);
 	}
 
+	printf("the structure of the BST:\n");
 	print_bst(root, 0);
+	printf("the pre-order output of the BST :\n");
+	print_preorder(root);
+	print_preorder_no_recursion(root);
+	printf("the in-order output of the BST :\n");
+	print_inorder(root);
 }
 
 

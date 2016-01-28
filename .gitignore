@@ -2,3 +2,7 @@
 *.exe
 *.o
 *.stackdump
+*.jar
+*.class
+*/.gradle/*
+*/build/*

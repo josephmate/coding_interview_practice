@@ -182,6 +182,51 @@ void print_inorder(bst * root) {
 	print_inorder_helper(root, 1, &isFirst);
 }
 
-
-
-
+/**
+ * Follow the path of the two keys. As soon as they want to take a different
+ * path, we know that we're at the ancestor.
+ */
+int lowest_common_ancestor(bst*root, int key1, int key2, int * reskey, int * resval){
+	if(is_empty(root)) {
+		// an empty tree has no nodes to be an ancestor
+		return 0;
+	} else if(is_leaf(root)) {
+		// we've reach the lowest node possible, there is no lower ancestor
+		// available on the path to key1 and key2
+		*reskey = root->key;
+		*resval = root->value;
+		return 1;
+	} else if(root->key == key1 || root->key == key2) {
+		// we reached one of the keys, going any lower and the paths differ by
+		// definition
+		*reskey = root->key;
+		*resval = root->value;
+		return 1;
+	} else if(key1 < root->key && key2 < root->key) {
+		if(is_empty(root->left)) {
+			// the path we can to take doesn't exist
+			*reskey = root->key;
+			*resval = root->value;
+			return 1;
+		} else {
+			// path to both keys are still the same, continue following the path
+			return lowest_common_ancestor(root->left, key1, key2, reskey, resval);
+		}
+	} else if (root->key < key1 &&  root->key < key2) {
+		if(is_empty(root->right)) {
+			// the path we can to take doesn't exist
+			*reskey = root->key;
+			*resval = root->value;
+			return 1;
+		} else {
+			// path to both keys are still the same, continue following the path
+			return lowest_common_ancestor(root->right, key1, key2, reskey, resval);
+		}
+	} else {
+		// below this node, the paths diverge making this node the lowest common
+		// ancestory
+		*reskey = root->key;
+		*resval = root->value;
+		return 1;
+	}
+}

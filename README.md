@@ -14,3 +14,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 5. nested_list: doubley linked list structure which also has a child
 6. linked_list_cycle: efficiently determine if a linked list has a cycle
 7. bst: implement a binary search tree using C (not C++)
+7. heap: implement a heap using Java and gradle build environment

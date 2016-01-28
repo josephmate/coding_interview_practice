@@ -1,0 +1,9 @@
+
+
+Implement a heap data structure with the following format:
+
+heap {
+	heap * left;
+	heap * right;
+	int data;
+};

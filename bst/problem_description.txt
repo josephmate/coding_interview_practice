@@ -8,8 +8,16 @@ struct bst {
 	int data;
 };
 
-Also provide preorder and inorder print methods.
 
-Additionally, implement preorder without using recursion.
+Prints the BST by traversing in pre-order.
+void print_preorder(bst * root);
 
+Same as print_preorder but does not use recursion.
+void print_preorder_no_recursion(bst * root);
 
+Prints the BST using an in-order traversal.
+void print_inorder(bst * root);
+
+Populates the reskey and resval pointers with the key and value of the first
+shared ancestor of key1 and key2.
+int lowest_common_ancestor(bst*root, int key1, int key2, int * reskey, int * resval);

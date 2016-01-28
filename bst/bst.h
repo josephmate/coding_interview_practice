@@ -60,6 +60,20 @@ void print_preorder_no_recursion(bst * root);
  */
 void print_inorder(bst * root);
 
+ /**
+	* Populates the reskey and resval pointers with the key and value of the first
+	* shared ancestor of key1 and key2.
+	*
+	* Returns 1 if common ancestor was found
+	* Returns 0 if common ancestor was not found. This can only happen if the bst
+	* is empty.
+	*
+	* If BST does not contain either key, we return the key and value from the
+	* node just before the search diverges. If the search never diverges, we
+	* return the leaf.
+	*/
+int lowest_common_ancestor(bst*root, int key1, int key2, int * reskey, int * resval);
+
 #endif // BST_H
 
 

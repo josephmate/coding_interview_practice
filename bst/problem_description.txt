@@ -7,3 +7,9 @@ struct bst {
 	bst * right;
 	int data;
 };
+
+Also provide preorder and inorder print methods.
+
+Additionally, implement preorder without using recursion.
+
+

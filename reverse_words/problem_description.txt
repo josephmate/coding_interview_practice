@@ -1,0 +1,9 @@
+
+
+Implement a function that reverses the words of a string. The words are
+seperated by spaces.
+
+void reverse_words(char * str);
+
+Do not allocate new memory. After 'reverse_words' is called, the original 'str'
+pointer should be updated to contain the reversed words.

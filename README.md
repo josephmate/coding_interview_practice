@@ -20,3 +20,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
 9. first_non_repeat_char: get practice with reading strings in C/C++
 10. remove_chars: remove the required characters from the input string
   1. efficiently build the new string
+11. reverse_words: reverse the words separated by spaces in place (without
+		allocating new memory)

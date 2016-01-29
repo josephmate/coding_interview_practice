@@ -7,7 +7,7 @@
  *
  * Returns false, if not found. res will be left untouched.
  */
-bool first_non_repeat_char(char * string, int len, char * res) ;
+bool first_non_repeat_char(const char * string, char * res) ;
 
 /**
  * Given UTF32 characters, determine the first non repeated character.

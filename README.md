@@ -18,3 +18,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
   2. eliminating recusion from a recusive method
 8. heap: implement a heap using Java and gradle build environment
 9. first_non_repeat_char: get practice with reading strings in C/C++
+10. remove_chars: remove the required characters from the input string
+  1. efficiently build the new string

@@ -1,0 +1,6 @@
+
+Implement a function that removes the characters in 'charsToRemove' from the
+'input' String. You should use the smallest amount of extra memory possible
+while achieving linear complexity.
+
+public static String removeChars(String input, String charsToRemove) ;

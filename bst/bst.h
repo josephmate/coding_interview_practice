@@ -74,9 +74,11 @@ void print_inorder(bst * root);
 	*/
 int lowest_common_ancestor(bst*root, int key1, int key2, int * reskey, int * resval);
 
-#endif // BST_H
 
 
 #ifdef __cplusplus
 }
 #endif // __cplusplus
+
+
+#endif // BST_H

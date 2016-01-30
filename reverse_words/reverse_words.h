@@ -10,6 +10,7 @@ extern "C" {
 
 void reverse_words(char * str);
 
+void reverse_str(char * start, char * end) ;
 
 #ifdef __cplusplus
 }

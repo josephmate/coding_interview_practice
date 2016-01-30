@@ -28,6 +28,12 @@ int str_to_int(const char * str, int * res);
  */
 int int_to_str(int val, char ** res) ;
 
+/**
+ * A helper method to compute the number of digits an integer has. Equivalent to
+ * log base 10 of val (except for negative values).
+ */
+int num_of_digits(int val) ;
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

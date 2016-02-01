@@ -1,7 +1,6 @@
 
 #include <stddef.h>        // NULL definition
 #include <stdlib.h>        // malloc
-#include <stdio.h>         // printf
 #include "str_int_convert.h"
 
 /**
@@ -68,6 +67,16 @@ int num_of_digits(int val) {
 	return exp;
 }
 
+int base10pow(int exp) {
+	int ret = 1;
+	int i;
+	for(i = 0; i < exp; i++) {
+		ret = ret * 10;
+	}
+
+	return ret;
+}
+
 int int_to_str(int val, char ** res) {
 	int digits = num_of_digits(val);
 	int array_size = digits;
@@ -78,7 +87,6 @@ int int_to_str(int val, char ** res) {
 	if(!res_str) { // could not allocate the memory
 		return 0;
 	}
-	res_str[array_size] = '\0';
 
 	char * startptr = res_str;
 	if(val < 0) {
@@ -86,8 +94,33 @@ int int_to_str(int val, char ** res) {
 		startptr++;
 	}
 
-	// TODO
+	int leftover = val;
+	int divider = base10pow(digits-1);
+	int i;
 
+	// go from the most significant digit to least significant digit
+	// - divide by largest power to get a single digit
+	// - modulo by the same power to get the remaining digits left to be appended
+	for(i = digits; i >= 1; i--) {
+		// ascii character '0' has value 48
+		
+		// Here we do not need to worry about overflows because we're doing division
+		// and modulus
+		int single_digit = (leftover/divider);
+		// negative value / positive value gives negative value
+		// - need to convert the digit to a positive
+		// - since it's only a digit, we don't need to worry about overflow like we
+		//   did in the num_of_digits() method
+		if(val < 0) {
+			single_digit = single_digit * -1;
+		}
+		*startptr = single_digit + 48;
+		leftover = leftover % divider; 
+		divider = divider/10;
+		startptr++;
+	}
+
+	res_str[array_size] = '\0';
 	*res = res_str;
 	return 1;
 }

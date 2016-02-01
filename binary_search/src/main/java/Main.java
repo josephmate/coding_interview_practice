@@ -21,7 +21,11 @@ public class Main {
 			array[i] = vals.get(i);
 		}
 
-		BinarySearch.binarySearch(array, 0, array.length-1, target) ;
+		int found = BinarySearch.binarySearch(array, 0, array.length-1, target) ;
+		int foundNoRecurse = BinarySearch.binarySearchNoRecurse(array, 0, array.length-1, target) ;
+
+		System.out.println("binarySearch() returned:          " + found);
+		System.out.println("binarySearchNoRecurse() returned: " + foundNoRecurse);
 	}
 
 }

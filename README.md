@@ -23,3 +23,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
 11. reverse_words: reverse the words separated by spaces in place (without
 		allocating new memory)
 12. str_int_convert: convert between string and integer
+13. binary_search: binary search implemented recursively and interatively
+14. permute_str: output all permutations of a string

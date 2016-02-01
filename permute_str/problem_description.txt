@@ -1,0 +1,3 @@
+
+
+Write a function that generates all the permutations of a string.

@@ -16,6 +16,7 @@ int main(int nargs, char** args) {
 		printf("1+2147483647  =%d\n", val );
 		printf("-2147483648/1000000000= %d\n", (-2147483648/1000000000) );
 		printf("-2147483648%%1000000000= %d\n", (-2147483648%1000000000) );
+		printf("2000000000*-1= %d\n", (2000000000*-1) );
 		return -1;
 	}
 	printf("original string:                %s\n", args[1]);
@@ -28,11 +29,11 @@ int main(int nargs, char** args) {
 	printf("number of characters in string: %d\n", strlen(args[1]));
 	printf("number of digits in integer:    %d\n", num_of_digits(converted_to_int));
 	char * converted_to_str;
-	if(int_to_str(converted_to_int, &converted_to_str)) {
+	if(!int_to_str(converted_to_int, &converted_to_str)) {
 		printf("the string you provided could not be converted back into a string\n");
 		return -1;
 	}
-	printf("converted back to string: %s\n", converted_to_str);
+	printf("converted back to string:       %s\n", converted_to_str);
 	delete converted_to_str;
 }
 

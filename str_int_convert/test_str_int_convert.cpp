@@ -35,7 +35,34 @@ BOOST_AUTO_TEST_CASE(testNumOfDigits){
 	check_int(10, num_of_digits(-2147483647));
 }
 
+void check_str_to_int(const char * input, int expected) {
+	int actual;
+	int resCode = str_to_int(input, &actual);
+	BOOST_CHECK_MESSAGE(resCode, "expecting str_to_int with string " << input << " to give " << expected << " but it failed to return");
+	if(resCode) {
+		check_int(expected, actual);
+	}
+}
+
 BOOST_AUTO_TEST_CASE(testStrToInt){
+	check_str_to_int("", 0);
+	check_str_to_int("0", 0);
+	check_str_to_int("1", 1);
+	check_str_to_int("-1", -1);
+	check_str_to_int("10", 10);
+	check_str_to_int("-10", -10);
+	check_str_to_int("9", 9);
+	check_str_to_int("-9", -9);
+	check_str_to_int("99", 99);
+	check_str_to_int("-99", -99);
+	check_str_to_int("19", 19);
+	check_str_to_int("-19", -19);
+
+	// max integer 2^31-1 = 2,147,483,647
+	check_str_to_int("2147483647", 2147483647);
+	// min integer -2^31 = 2,147,483,648
+	check_str_to_int("-2147483648", -2147483648);
+	check_str_to_int("-2147483647", -2147483647);
 }
 
 void check_int_to_str(int input, const char * expected) {
@@ -44,6 +71,7 @@ void check_int_to_str(int input, const char * expected) {
 	BOOST_CHECK_MESSAGE(resCode, "expecting int_to_str with integer " << input << " to give " << expected << " but it failed to return");
 	if(resCode) {
 		BOOST_CHECK_MESSAGE(strcmp(expected,converted_to_str) == 0, "expecting " << expected << " but got " << converted_to_str);
+		delete converted_to_str;
 	}
 }
 

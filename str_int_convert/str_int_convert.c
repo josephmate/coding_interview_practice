@@ -1,7 +1,9 @@
 
-#include <stddef.h>        // NULL definition
-#include <stdlib.h>        // malloc
+#include <string.h>           // strlen
+#include <stddef.h>           // NULL definition
+#include <stdlib.h>           // malloc
 #include "str_int_convert.h"
+
 
 /**
  * Remember that the max integer is 2^31-1
@@ -25,10 +27,49 @@ int str_to_int(const char * str, int * res){
 	int is_neg = 0;
 	if(*str == '-') {
 		is_neg = 1;
+		str++;
+		// case where only '-' negative sign
+		if(*str == '\0') {
+			return 0;
+		}
+	}
+	
+	int digits = strlen(str);
+	int multiplier = base10pow(digits-1);
+	int accum = 0;
+	int i;
+
+	// go digit by digit, and multiply by 10^(digit-1)
+	// ie:
+	//
+	// the number 230789 can be broken down into
+	//
+	//         ______ + 2*10^5   6th digit
+	//        / _____ + 2*10^4   5th digit
+	//       / / ____ + 0*10^3   4th digit
+	//      / / / ___ + 7*10^2   3rd digit
+	//     / / / / __ + 8*10^1   2nd digit
+	//    / / / / / _ + 9*10^0   1st digit
+	//   / / / / / /
+	//  / / / / / / 
+	// / / / / / / 
+	// 2 3 0 7 8 9      6 digits
+	for(i = digits; i >= 1; i--) {
+		// case of non number digit
+		if(*str < 48 || *str > 57) {
+			return 0;
+		}
+		int addition = (*str - 48)*multiplier;
+		if(is_neg) {
+			accum -= addition;
+		} else {
+			accum += addition;
+		}
+		multiplier = multiplier/10;
+		str++;
 	}
 
-
-
+	*res = accum;
 	return 1;
 }
 

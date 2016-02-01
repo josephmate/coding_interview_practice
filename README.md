@@ -22,3 +22,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
   1. efficiently build the new string
 11. reverse_words: reverse the words separated by spaces in place (without
 		allocating new memory)
+12. str_int_convert: convert between string and integer

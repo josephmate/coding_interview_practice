@@ -13,3 +13,8 @@ For example, the input "123" should produce:
 23
 123
 
+Each individual character of the string should be treated as a unique character,
+even if there are duplicates. For example "11" should produce":
+1
+1
+11

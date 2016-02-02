@@ -1,0 +1,20 @@
+
+Write a function that generates all the combinations of a string of all sizes. Two string
+containing the same characters, are the same combination. For example, "12" and
+"21" are counted as the same combination because both strings contain one '1' and
+one '2'.
+
+For example, the input "123" should produce:
+1
+2
+3
+12
+13
+23
+123
+
+Each individual character of the string should be treated as a unique character,
+even if there are duplicates. For example "11" should produce":
+1
+1
+11

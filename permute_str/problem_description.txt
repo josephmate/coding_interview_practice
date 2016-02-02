@@ -1,3 +1,18 @@
 
+Write a function that generates all the permutations of a string. For example
+"abc" produces:
+abc
+acb
+bac
+bca
+cab
+cba
 
-Write a function that generates all the permutations of a string.
+Treat duplicate characters as unique characters. For example "aab" produces:
+aab
+aba
+aab
+aba
+baa
+baa
+

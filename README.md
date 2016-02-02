@@ -25,4 +25,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
 12. str_int_convert: convert between string and integer
 13. binary_search: binary search implemented recursively and interatively
 14. permute_str: output all permutations of a string
-14. string_combos: output all the combinations of a string
+15. string_combos: output all the combinations of a string
+16. telephone_words: output all possible character combinations of a phone number

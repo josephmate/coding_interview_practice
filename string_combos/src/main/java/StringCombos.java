@@ -2,7 +2,7 @@ import java.util.*;
 
 public class StringCombos {
 	
-	public StringCombos() {
+	private StringCombos() {
 	}
 
 	public static void stringCombos(String strToCombo, int maxLen, int charposn, int startIdx, char [] soFar, List<String> combos) {

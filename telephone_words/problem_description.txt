@@ -1,20 +1,8 @@
 
-Write a function that generates all the combinations of a string of all sizes. Two string
-containing the same characters, are the same combination. For example, "12" and
-"21" are counted as the same combination because both strings contain one '1' and
-one '2'.
+Given a phone number, compute all possible (including non-sensical) words that
+can be generated from it. You can use a helper method:
 
-For example, the input "123" should produce:
-1
-2
-3
-12
-13
-23
-123
+  char getCharKey( int telephoneKey, int place )
 
-Each individual character of the string should be treated as a unique character,
-even if there are duplicates. For example "11" should produce":
-1
-1
-11
+which given a telephoneKey between 0-9, and a place between 1-3 returns the
+corresponding character. For instance, 8,1 will return 'T'.

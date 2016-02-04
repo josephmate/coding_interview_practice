@@ -63,6 +63,97 @@ public class TelephoneWords {
 		return ret;
 	}
 	
+	private static byte [] getKeys(int telephone) {
+		int digits = countDigits(telephone);
+		byte [] keys = new byte[digits+1];
+		int divisor = pow(10,digits-1);
+		for(int i = 1; i <= digits; i++) {
+			// this is a safe cast as the result will always be between 0 and 9
+			keys[i] = (byte)(telephone/divisor);
+			telephone = telephone % divisor;
+			divisor = divisor/10;
+		}
+		return keys;
+	}
+
+	private static void incrementCounter(byte[] counter) {
+		for(int i = counter.length - 1; i >= 0; i--) {
+			// ignore the 0 digits, because they represent the 0 and 1 keys which have
+			// no alphabet enumeration
+			if(counter[i] > 0) {
+				// increase
+				counter[i]++;
+
+				// check if we need to carry to the next place value
+				if(counter[i] <= 3) {
+					break;
+				} else {
+					counter[i] = 1;
+				}
+			}
+		}
+	}
+
+	private static byte[] initCounter(byte[] keys) {
+		byte [] counter = new byte[keys.length];
+		counter[0] = 1; // the overflow place value is always 1 (until we're done)
+
+		for(int i = 1; i < keys.length; i++) {
+			if(keys[i] != 0 && keys[i] != 1) {
+				counter[i] = 1;
+			}
+		}
+		return counter;
+	}
+
+	private static String convertToAlpha(byte[] keys, byte[] counter) {
+		StringBuilder builder = new StringBuilder();
+		for(int i = 1; i < keys.length; i++) {
+			if(keys[i] == 0) {
+				builder.append("0");
+			} else if(keys[i] == 1) {
+				builder.append("1");
+			} else {
+				builder.append(getCharKey(keys[i],counter[i]));
+			}
+		}
+		return builder.toString();
+	}
+
+	/**
+	 * The idea is to keep an array of of bytes that represent the the next string
+	 * of characters to use, and we just increment it until we get all possible
+	 * characters. For example:
+	 *
+	 * Number:                 overflow  1 2 3 1 2 4 0 3 1
+	 * 1st iteration of array:     1,    0,1,1,0,1,1,0,1,0
+	 * 2nd iteration of array:     1,    0,1,1,0,1,1,0,2,0
+	 * 3rd iteration of array:     1,    0,1,1,0,1,1,0,3,0
+	 * 4th iteration of array:     1,    0,1,1,0,1,2,0,1,0
+	 * ...
+	 *
+	 * Notice that 1 and 0 are always represented by a 0 because they have no
+	 * corresponding alphabet characters.
+	 *
+	 * Once overlow is 2, we know it's time to stop.
+	 */
+	public static List<String> telephoneWordsNoRecurse(int telephone) {
+		List<String> res = new ArrayList<>();
+		int digits = countDigits(telephone);
+
+		// determine the individuals keys for easier processing
+		byte [] keys = getKeys(telephone);
+
+		byte [] counter = initCounter(keys);
+
+		while(counter[0] <= 1) {
+			res.add(convertToAlpha(keys,counter));
+			incrementCounter(counter);
+		}
+
+		return res;
+	}
+	
 	/**
 	 * Here we accumulate the characters in a buffer and add then when the buffer
 	 * is filled.
@@ -103,10 +194,6 @@ public class TelephoneWords {
 	}
 
 	public static List<String> telephoneWords(int telephone) {
-		List<String> res = new ArrayList<>();
-		int digits = countDigits(telephone);
-		char [] buffer = new char[digits];
-		telephoneWordsRecurse(telephone, 0, buffer, pow(10, digits-1), res);
-		return res;
+		return telephoneWordsNoRecurse(telephone);
 	}
 }

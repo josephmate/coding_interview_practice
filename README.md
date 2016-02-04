@@ -27,3 +27,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 14. permute_str: output all permutations of a string
 15. string_combos: output all the combinations of a string
 16. telephone_words: output all possible character combinations of a phone number
+17. busy_waiting: describe techniques used to prevent busy waiting

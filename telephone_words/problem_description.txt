@@ -1,0 +1,8 @@
+
+Given a phone number, compute all possible (including non-sensical) words that
+can be generated from it. You can use a helper method:
+
+  char getCharKey( int telephoneKey, int place )
+
+which given a telephoneKey between 0-9, and a place between 1-3 returns the
+corresponding character. For instance, 8,1 will return 'T'.

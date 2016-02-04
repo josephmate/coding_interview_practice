@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PermuteString {
 	
-	public PermuteString() {
+	private PermuteString() {
 	}
 
 	/**

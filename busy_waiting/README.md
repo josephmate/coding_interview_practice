@@ -25,7 +25,7 @@ You want to avoid this pattern because it wastes CPU cycles:
 2. Other processes sharing the same machine could have also used those cycles
 3. If the machine only has one CPU, thread2 could have made use of those cycles
 
-## BPoor Solution: Sleep
+## Poor Solution: Sleep
 ```
 while( waitinigForThread1() && waitingForThread2() ) {
 	Thread.sleep(1000); // Sleep for 1 second
@@ -74,6 +74,58 @@ threads finished.
 
 This method uses the least possible cycles, but it is error prone. If not coded
 properly, you can end up with race conditions or deadlocks.
+Consider our two subtask example:
+
+```
+Object lock = new Object(); // shared object to synchrnonize on
+int doneCount = 0;
+Thread thread1 = new Thread(new Runnable() {
+	public void run() {
+		// ...
+		// do sub task 1
+		// ...
+		synchronized(lock) {
+			doneCount++;
+			notify();
+		}
+	}
+});
+Thread thread2 = new Thread(new Runnable() {
+	public void run() {
+		// ...
+		// do sub task 2
+		// ...
+		synchronized(lock) {
+			doneCount++;
+			notify();
+		}
+	}
+});
+
+// this is the main thread again
+synchronized(lock) {
+	thread1.start();
+	thread2.start();
+	
+	while(doneCount < 2) {
+		wait();
+	}
+}
+
+```
+
+In this example there we so many opportunities to mess up:
+
+1. If I started the threads outside the synchornized block, the two threads
+	 could finish before the main thread calls 'wait()'
+2. If I put the count outside of the synchornized block, the two threads might
+	 update them at the same time and I'll get doneCount==1 instead of 2!
+3. If I forget to call notify() on one of the threads, then when the main thread
+	 might never wake up because it never was notified.
+4. Placing the entire subtask in the synchronized block instead of just the
+	 shared data acceses would of only let one sub task run at a time resulting in
+   no parallelism.
+
 
 ## Good Solution: Futures and Other Concurrency Libraries
 

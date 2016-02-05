@@ -174,7 +174,7 @@ class Producer implements Runnable {
 				return;
 			}
 			System.out.println("producer " + id + " trying to add task");
-			buffer.addTask(i);
+			buffer.addTask(id);
 			System.out.println("producer " + id + " done adding task");
 		}
 		

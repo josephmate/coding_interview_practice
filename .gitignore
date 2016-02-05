@@ -6,3 +6,4 @@
 *.class
 */.gradle/*
 */build/*
+*.log

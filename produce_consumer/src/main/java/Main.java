@@ -4,13 +4,13 @@ public class Main {
 	
 	public static enum Implementation {
 		MONITOR,
-		CONCURRENCY_LIBRARY
+		CONCURRENT_LIBRARY
 	}
 
 	public static void main(String []args) {
 		if(args.length != 7) {
 			throw new IllegalArgumentException(
-					"./runjar.sh [MONITOR|CONCURRENCY_LIBRARY] <buffer_size> <num_producers> <num_items_producer_per_consumer> <producer_time_msec> <num_consumers> <consumer_time_msec>");
+					"./runjar.sh [MONITOR|CONCURRENT_LIBRARY] <buffer_size> <num_producers> <num_items_producer_per_consumer> <producer_time_msec> <num_consumers> <consumer_time_msec>");
 		}
 		int argCounter = 0;
 		Implementation impl = Implementation.valueOf(args[argCounter++]);
@@ -25,6 +25,9 @@ public class Main {
 		switch(impl){
 			case MONITOR:
 				model = new ProducerConsumerWithMonitor();
+				break;
+			case CONCURRENT_LIBRARY:
+				model = new ProducerConsumerWithConcurencyLibrary();
 				break;
 			default:
 				throw new IllegalArgumentException(impl + " not implemented yet");

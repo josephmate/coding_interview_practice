@@ -1,0 +1,12 @@
+
+
+Implement a produce consumer model where there are:
+- P producers
+- each producer takes t_p time to produce a new task
+- C consumers
+- each consumer takes t_c time to finish a task
+- the buffer can only hold B tasks
+
+Build two versions:
+1. using monitor and locking primatives
+2. using the Java concurrency library

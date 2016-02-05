@@ -17,3 +17,4 @@ public interface ProducerConsumerModel {
 		int consumeTime)  ;
 
 }
+

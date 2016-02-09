@@ -22,6 +22,9 @@ public class Main {
 			case BARGING:
 				model = new BargingDiningPhilosophers();
 				break;
+			case FAIR:
+				model = new FairDiningPhilosophers();
+				break;
 			default:
 				throw new IllegalArgumentException(impl + " not implemented yet");
 		}

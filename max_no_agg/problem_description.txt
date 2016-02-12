@@ -1,0 +1,8 @@
+Given the following SQL database schema
+
+Test (
+	num INT(4)
+)
+
+write a SQL statement that returns the maximum value from num without using an
+aggregate (MAX, MIN, etc.).

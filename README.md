@@ -31,3 +31,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 18. producer_consumer: implementation of the producer consumer example
 19. dining_philosophers: make sure no one starves
 20. simple_sql: insert a row into a table
+21. employee_db: select practice

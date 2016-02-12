@@ -1,0 +1,54 @@
+You are given a database with the following tables:
+
+Company (
+	companyName CHAR(30),
+	id INT(4) PRIMARY KEY
+)
+
+EmployeesHired (
+	id INT(4) PRIMARY KEY,
+	numHired INT(4),
+	fiscalQuarter INT(4) PRIMARY KEY,
+	FOREIGN KEY id REFERENCES Company
+)
+
+You may make the assumption that the only possible fiscal quarters are 1 through 4.
+
+Sample data for this schema is presented in the table belows.
+
+
+        companyName  id
+   Hillary Plumbing   6
+  John Lawn Company   9
+Dave Cookie Company   19
+   Jane Electricity   3
+   Edge Case          1
+
+Id  numHired  fiscalQuarter
+ 3         3              3
+ 3         2              4
+19         4              1
+ 6         2              1
+ 1         0              4
+
+NOTE: In the original specification, they make an error: duplicated id. This
+      relates to my third issue that I talk about later.
+
+      Secondly, the test data they provide does not include the numHired > 0
+      edge case, which I have appended to the tables.
+
+      Finally, one issue that I have left unresolved. This EmployeesHired
+      table makes no sense because there will be multiple rows for each
+      companyId. As a result, the primary key should id and fiscalQuarter.
+
+Part i)
+Write a SQL statement that returns the names of all the companies that hired
+employees in fiscal quarter 4.
+
+Part ii)
+Now, using the same schema, write a SQL statement that returns the names of all
+companies that did not hire anyone in fiscal quarters 1 through 4.
+
+Part iii)
+Finally, return the names of all companies and the total number of employees that
+each company hired during fiscal quarters 1 through 4.

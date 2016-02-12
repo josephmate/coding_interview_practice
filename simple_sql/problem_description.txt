@@ -1,0 +1,9 @@
+Given a database with the table:
+
+Olympics(
+	city CHAR(16),
+	year INT(4)
+)
+
+write a SQL statement to insert Montreal and 1976 into the database.
+

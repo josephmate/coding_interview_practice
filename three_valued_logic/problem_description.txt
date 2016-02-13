@@ -1,0 +1,9 @@
+Given the following table:
+
+Address (
+	street CHAR(30) NOT NULL,
+	apartment CHAR(10),
+	city CHAR(40) NOT NULL,
+)
+
+write a SQL statement that returns nonapartment addresses only.

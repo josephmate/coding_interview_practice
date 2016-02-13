@@ -15,4 +15,5 @@ INSERT INTO Test (num) VALUES (5);
 INSERT INTO Test (num) VALUES (23);
 INSERT INTO Test (num) VALUES (-6);
 INSERT INTO Test (num) VALUES (7);
+INSERT INTO Test (num) VALUES (23);
       

@@ -33,3 +33,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 20. simple_sql: insert a row into a table
 21. employee_db: select practice
 22. max_no_agg: implement max without using aggregate functions (ie: group by)
+23. three_valued_logic: where clause practice

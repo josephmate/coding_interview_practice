@@ -1,0 +1,41 @@
+
+
+Write a function that draws the upper eighth of a circle centered at (0, 0) with a given radius,
+where the upper eighth is defined as the portion starting at 12 and going to 1:30 on a clock face.
+Use the following prototype:
+ void drawEighthOfCircle( int radius );
+
+
+The coordinate system and an example of what you are to draw are shown in the
+diagram below.
+
+You will use a function with the following prototype to draw pixels:
+  void setPixel( int xCoord, int yCoord );
+
+
+
+
+                           |******
+                           |      ** -
+                           |       *- 
+                           |       -
+                           |      -
+                           |     -
+                           |    -
+                           |   -
+                           |  -
+                           | -   45 degrees
+                           |-
+---------------------------|-----------------------------
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |
+                           |

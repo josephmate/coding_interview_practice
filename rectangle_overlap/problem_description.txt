@@ -1,0 +1,28 @@
+
+
+You are given two rectangles, each defined by an upper left (UL) corner and a lower right (LR) corner.
+Both rectangles’ edges will always be parallel to the x or y axis, as shown in Figure 11-2.
+Write a function that determines whether the two rectangles overlap.
+The function should return 1 if the rectangles overlap and 0 if they do not.
+
+For convenience, you may use the following classes:
+
+class Point {
+	public int x;
+	public int y;
+	public Point( int x, int y ){
+		this.x = x;
+		this.y = y;
+	}
+}
+
+class Rect {
+	public Point ul;
+	public Point lr;
+	public Rect( Point ul, Point lr ){
+		this.ul = ul;
+		this.lr = lr;
+	}
+}
+
+The method should take two Rect objects and return true if they overlap, false if they don’t.

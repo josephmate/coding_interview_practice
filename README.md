@@ -34,3 +34,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
 21. employee_db: select practice
 22. max_no_agg: implement max without using aggregate functions (ie: group by)
 23. three_valued_logic: where clause practice
+24. eighth_of_a_circle: practice graphics and bits manipulations by drawing
+		eigth of a circle

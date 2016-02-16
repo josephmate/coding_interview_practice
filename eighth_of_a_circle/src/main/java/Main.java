@@ -58,16 +58,36 @@ public class Main extends Application {
 		gc.getPixelWriter().setColor(WIDTH/2 + x, HEIGHT/2 - y, Color.BLACK);
 	}
 
+	/**
+	 * derivation of y wrt to x and r:
+	 * r^2 = x^2 + y^2  (equation of circle)
+	 * y^2 = r^2 - x^2
+	 * y = sqrt(r^2-x^2)
+	 *
+	 * pseudo code
+	 * x = 0
+	 * while true
+	 * 	y = sqrt(r^2-x^2)
+	 * 	y_int = round y
+	 * 	if y > x
+	 * 		break
+	 * 	setPixel x,y
+	 *
+	 */
 	private void drawEighthOfCircle( int radius ){
-		//TODO implement
-		setPixel(radius, radius);
-		setPixel(radius-1, radius);
-		for(int i = 1; i <= 10; i++) {
-			setPixel(radius+i, radius);
-		}
-		setPixel(radius, radius-1);
-		for(int i = 1; i <= 5; i++) {
-			setPixel(radius, radius+i);
+		int r2 = radius*radius;
+		int x = 0;
+		while(true) {
+			int y = (int)Math.round(Math.sqrt(r2 - x*x));
+
+			// we are 1/8th done once x=y (ie: 45 degrees)
+			if(x>y) {
+				break;
+			}
+			setPixel(x,y);
+
+			// draw the next x value
+			x++;
 		}
 	}
 

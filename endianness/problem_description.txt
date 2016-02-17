@@ -1,0 +1,17 @@
+
+Write a function that determines whether a computer is big-endian or little-endian.
+
+
+Imagine you want to store 2 bytes integers (notated using hexadecimal) or some other multibyte datatype.
+The two more common ways to store them is 'big-endian' and 'little-endian'
+
+Suppose we want to store the decimal value 10 ( or 0xA ) into a two byte integer.
+
+In 'little-endian', the bytes are stored from least significant byte to most significant byte.
+This makes it easier to read from least significant to most significant byte.
+0A 00
+
+In 'big-endian', the bytes are stored from the most significant byte to least significant byte.
+This makes is easier to compute the sign.
+00 0A
+

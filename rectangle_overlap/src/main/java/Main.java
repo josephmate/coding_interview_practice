@@ -19,8 +19,8 @@ public class Main {
 	 	int r2x2 = Integer.parseInt(args[argCount++]);
 	 	int r2y2 = Integer.parseInt(args[argCount++]);
 		
-		Rect r1 = new Rect(new Point(r1x2, r1y2), new Point(r1x1, r1y1));
-		Rect r2 = new Rect(new Point(r2x2, r2y2), new Point(r2x1, r2y1));
+		Rect r1 = new Rect(new Point(r1x1, r1y1), new Point(r1x2, r1y2));
+		Rect r2 = new Rect(new Point(r2x1, r2y1), new Point(r2x2, r2y2));
 
 		System.out.println("rectangle 1: " + r1);
 		System.out.println("rectangle 2: " + r2);

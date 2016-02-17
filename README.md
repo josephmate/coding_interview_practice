@@ -37,3 +37,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 24. eighth_of_a_circle: practice graphics and bits manipulations by drawing
 		eigth of a circle
 24. rectangle_overlap: determine if two rectangles overlap
+25. endianness: determine the endianness of the current computer

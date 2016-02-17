@@ -15,3 +15,6 @@ In 'big-endian', the bytes are stored from the most significant byte to least si
 This makes is easier to compute the sign.
 00 0A
 
+You can usually check the endianness by looking for information on your
+processor. For instance, Intel CPUs are little endian.
+https://en.wikipedia.org/wiki/Endianness

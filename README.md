@@ -38,3 +38,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 		eigth of a circle
 24. rectangle_overlap: determine if two rectangles overlap
 25. endianness: determine the endianness of the current computer
+26. tower_of_hanoi: practice with Java stacks

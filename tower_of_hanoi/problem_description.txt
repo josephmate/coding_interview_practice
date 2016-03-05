@@ -1,0 +1,11 @@
+
+
+Five introspective and introverted philosophers are sitting at a circular table.
+In front of each philosopher is a plate of food.
+A fork (or a chopstick) lies between each philosopher, one by the philosopher’s left hand and one by the right hand.
+A philosopher cannot eat until he or she has both forks in hand.
+Forks are picked up one at a time.
+If a fork is unavailable, the philosopher simply waits for the fork to be freed.
+When a philosopher has two forks, he or she eats a few bites and then returns both forks to the table.
+If a philosopherdi cannot obtain both forks for a long time, he or she will starve.
+Is there an algorithm that will ensure that no philosophers starve?

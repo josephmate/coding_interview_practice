@@ -39,3 +39,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
 24. rectangle_overlap: determine if two rectangles overlap
 25. endianness: determine the endianness of the current computer
 26. tower_of_hanoi: practice with Java stacks
+27. all_unique: determine if all the characters of a string are unique
+

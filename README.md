@@ -41,3 +41,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 26. tower_of_hanoi: practice with Java stacks
 27. all_unique: determine if all the characters of a string are unique
 28. remove_dupes: removes duplicate characters from a string in place using constant memory
+29. anagram: Write a method to decide if two strings are anagrams or not.

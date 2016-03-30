@@ -16,6 +16,22 @@ void check_str(const char * input, const char * expected) {
 }
 
 BOOST_AUTO_TEST_CASE(testReverseString){
+	// len 0
 	check_str("", "");
+	
+	// len 1
+	check_str("a", "a");
+
+	// len 2
+	check_str("ab", "ab");
+	check_str("aa", "a");
+
+	// len 3
+	check_str("abc", "abc");
+	check_str("aac", "ac");
+	check_str("aaa", "a");
+	check_str("aba", "ab");
+	check_str("bbc", "bc");
+	check_str("abb", "ab");
 }
 

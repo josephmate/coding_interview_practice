@@ -43,3 +43,4 @@ This is my journey, preparing myself for coding interviews. My goals are:
 28. remove_dupes: removes duplicate characters from a string in place using constant memory
 29. anagram: Write a method to decide if two strings are anagrams or not.
 30. encode_space: Write a method to replace all spaces in a string with ‘%20’.
+31. rotate_matrix: Rotate an N by N matrix in place

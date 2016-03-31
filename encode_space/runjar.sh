@@ -1,3 +1,3 @@
 
 
-java -jar build/libs/main.jar $@
+java -jar build/libs/main.jar "$@"

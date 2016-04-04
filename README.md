@@ -44,3 +44,5 @@ This is my journey, preparing myself for coding interviews. My goals are:
 29. anagram: Write a method to decide if two strings are anagrams or not.
 30. encode_space: Write a method to replace all spaces in a string with ‘%20’.
 31. rotate_matrix: Rotate an N by N matrix in place
+32. is_rotation_using_substring: are two strings rotations of each other using
+		only one call to substring
